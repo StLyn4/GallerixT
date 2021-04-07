@@ -7,6 +7,19 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "bundleIdentifier": "com.stlyn4.gallerixt",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.stlyn4.gallerixt",
+      "versionCode": 1
+    },
+    "splash": {
+      "image": "src/assets/images/logo/splash.png",
+      "backgroundColor": "#212121"
+    },
+    "icon": "src/assets/images/logo/icon.png"
   }
 }
