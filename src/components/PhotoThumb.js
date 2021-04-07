@@ -3,7 +3,7 @@ import { View, Image, Animated, StyleSheet } from 'react-native';
 
 import Loading from '@/Loading';
 
-class PhotoBlock extends React.Component {
+class PhotoThumb extends React.Component {
   state = {
     loadingOpacity: new Animated.Value(1),
   };
@@ -17,17 +17,12 @@ class PhotoBlock extends React.Component {
   };
 
   render() {
-    const { url, mode = 'thumb', style: userStyle } = this.props;
+    const { url, containerStyle, imageStyle } = this.props;
+    const loadingOffset = containerStyle?.height ?? styles.container.height;
     return (
-      <View
-        style={[
-          styles.container,
-          mode === 'thumb' && styles.containerThumb,
-          userStyle,
-        ]}
-      >
+      <View style={[styles.container, containerStyle]}>
         <Image
-          style={[styles.image, mode === 'thumb' && styles.imageThumb]}
+          style={[styles.image, imageStyle]}
           source={{ uri: url }}
           resizeMode="cover"
           onLoad={this.loadHandler}
@@ -37,7 +32,7 @@ class PhotoBlock extends React.Component {
             opacity: this.state.loadingOpacity,
           }}
         >
-          <Loading style={styles.loadingStyle} />
+          <Loading style={loadingOffset && { marginTop: -loadingOffset }} />
         </Animated.View>
       </View>
     );
@@ -54,21 +49,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
     elevation: 4,
-  },
-  containerThumb: {
     width: 100,
     height: 100,
   },
   image: {
     borderRadius: 10,
-  },
-  imageThumb: {
     minWidth: 100,
     minHeight: 100,
   },
-  loadingStyle: {
-    marginTop: -100,
-  },
 });
 
-export default PhotoBlock;
+export default PhotoThumb;

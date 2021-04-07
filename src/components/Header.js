@@ -26,7 +26,7 @@ const Header = (props) => {
       {routeName === 'Photo' && (
         <TouchableOpacity
           style={styles.backButton}
-          onPress={navigation.openDrawer}
+          onPress={() => navigation.setParams({ showInfo: true })}
           hitSlop={{ top: 20, bottom: 20, left: 10, right: 20 }}
         >
           <Ionicons

@@ -8,7 +8,7 @@ const Loading = ({ theme, style: userStyle }) => {
       style={[
         styles.container,
         {
-          backgroundColor: theme.colors.border,
+          backgroundColor: theme.colors.surface,
           shadowColor: theme.colors.onBackground,
         },
         userStyle,

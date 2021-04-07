@@ -4,7 +4,7 @@ import axios from 'axios';
 import { UNSPLASH_TOKEN } from '@env';
 
 import Loading from '@/Loading';
-import PhotoBlock from '@/PhotoBlock';
+import PhotoThumb from '@/PhotoThumb';
 
 class Gallery extends React.Component {
   state = {
@@ -42,10 +42,13 @@ class Gallery extends React.Component {
           photos.map((photo) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate('Photo', { name: 'Test' })}
+                onPress={() => navigation.navigate('Photo', { info: photo })}
                 key={photo.id}
               >
-                <PhotoBlock url={photo.urls.thumb} style={styles.thumb} />
+                <PhotoThumb
+                  url={photo.urls.thumb}
+                  containerStyle={styles.thumb}
+                />
               </TouchableOpacity>
             );
           })
@@ -60,7 +63,6 @@ class Gallery extends React.Component {
 const styles = StyleSheet.create({
   containerFetched: {
     flex: 1,
-    minHeight: '100%',
     paddingHorizontal: 5,
     paddingVertical: 5,
     flexDirection: 'row',

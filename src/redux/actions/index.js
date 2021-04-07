@@ -1,6 +1,8 @@
 import * as types from './types';
 
 // Шаблон асинхронного действия
+// Используется если необходимо асинхронное действие.
+// Например, загрузка файла, информации
 // export const asyncAction = (...) => {
 //   return async (dispatch) =>
 //     dispatch({

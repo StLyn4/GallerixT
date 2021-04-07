@@ -40,7 +40,7 @@ const RootNavigator = (props) => {
         <Stack.Screen
           name="Photo"
           component={Photo}
-          options={({ route }) => ({ title: route.params.name ?? 'Фото' })}
+          options={{ title: 'Фото' }}
         />
       </Stack.Navigator>
     </View>
