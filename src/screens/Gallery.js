@@ -1,8 +1,10 @@
 import React from 'react';
-import { TouchableOpacity, ScrollView } from 'react-native';
-import { Text } from 'react-native-paper';
+import { StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
 import { UNSPLASH_TOKEN } from '@env';
+
+import Loading from '@/Loading';
+import PhotoBlock from '@/PhotoBlock';
 
 class Gallery extends React.Component {
   state = {
@@ -16,7 +18,6 @@ class Gallery extends React.Component {
         params: { client_id: UNSPLASH_TOKEN },
       })
       .then(({ data: photos }) => {
-        console.log(photos);
         this.setState({ fetched: true, photos });
       })
       .catch((err) => {
@@ -26,20 +27,54 @@ class Gallery extends React.Component {
 
   render() {
     const { navigation } = this.props;
+    const { fetched, photos } = this.state;
     return (
-      <ScrollView>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Photo', { name: 'Test' })}
-        >
-          <Text>
-            {this.state.fetched
-              ? JSON.stringify(this.state.photos, null, '\t')
-              : 'Fetching...'}
-          </Text>
-        </TouchableOpacity>
+      // Увы, FlatList немного коряво работает с подобными вещами...
+      // Сделать можно, но стоит ли пока что игра свеч?
+      // Даже один с разработчиков подталкивает использовать ScrollView:
+      // https://github.com/facebook/react-native/issues/13939
+      <ScrollView
+        contentContainerStyle={
+          fetched ? styles.containerFetched : styles.containerLoading
+        }
+      >
+        {fetched ? (
+          photos.map((photo) => {
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Photo', { name: 'Test' })}
+                key={photo.id}
+              >
+                <PhotoBlock url={photo.urls.thumb} style={styles.thumb} />
+              </TouchableOpacity>
+            );
+          })
+        ) : (
+          <Loading />
+        )}
       </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  containerFetched: {
+    flex: 1,
+    minHeight: '100%',
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  thumb: {
+    margin: 10,
+  },
+  containerLoading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default Gallery;
