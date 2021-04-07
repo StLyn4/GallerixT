@@ -1,0 +1,12 @@
+{
+  "name": "GallerixT",
+  "displayName": "GallerixT",
+  "expo": {
+    "name": "GallerixT",
+    "slug": "GallerixT",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
