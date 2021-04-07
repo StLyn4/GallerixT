@@ -15,6 +15,12 @@ module.exports = function config(api) {
           },
         },
       ],
+      [
+        'module:react-native-dotenv',
+        {
+          allowUndefined: false,
+        },
+      ],
     ],
   };
 };

@@ -9,10 +9,15 @@ import * as types from './types';
 //     });
 // };
 
-// Шаблон синхронного действия
-// export const syncAction = () => {
-//   return {
-//     type: types.TYPE,
-//     payload: ...,
-//   };
-// };
+export const changeTheme = (isDark) => {
+  return {
+    type: types.CHANGE_THEME,
+    payload: { isDark },
+  };
+};
+
+export const toggleTheme = () => {
+  return {
+    type: types.TOGGLE_THEME,
+  };
+};
