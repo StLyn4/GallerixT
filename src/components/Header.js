@@ -1,56 +1,44 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Appbar } from 'react-native-paper';
-import { Ionicons } from '@expo/vector-icons';
 
 import { toggleTheme } from 'app/redux/actions';
+import IconButton from '@/IconButton';
 
 const Header = (props) => {
   const { title, routeName, navigation, havePrevious, theme } = props;
   return (
     <Appbar.Header theme={{ colors: { primary: theme.colors.surface } }}>
       {havePrevious && (
-        <TouchableOpacity
-          style={styles.backButton}
+        <IconButton
+          name="chevron-back-outline"
+          color={theme.colors.primary}
           onPress={navigation.goBack}
+          style={styles.backButton}
           hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
-        >
-          <Ionicons
-            name="chevron-back-outline"
-            size={32}
-            color={theme.colors.primary}
-          />
-        </TouchableOpacity>
+        />
       )}
       {routeName === 'Photo' && (
-        <TouchableOpacity
-          style={styles.backButton}
+        <IconButton
+          name="information-circle-outline"
+          color={theme.colors.primary}
           onPress={() => navigation.setParams({ showInfo: true })}
-          hitSlop={{ top: 20, bottom: 20, left: 10, right: 20 }}
-        >
-          <Ionicons
-            name="information-circle-outline"
-            size={32}
-            color={theme.colors.primary}
-          />
-        </TouchableOpacity>
+          style={styles.backButton}
+          hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+        />
       )}
       <Appbar.Content
         title={title}
         titleStyle={[styles.title, { color: theme.colors.primary }]}
       />
-      <TouchableOpacity
-        style={styles.themeChangeButton}
+      <IconButton
+        name={theme.dark ? 'moon-outline' : 'sunny-outline'}
+        color={theme.colors.primary}
         onPress={props.toggleTheme}
+        style={styles.themeChangeButton}
         hitSlop={{ top: 30, bottom: 30, left: 30, right: 30 }}
-      >
-        <Ionicons
-          name={theme.dark ? 'moon-outline' : 'sunny-outline'}
-          size={32}
-          color={theme.colors.primary}
-        />
-      </TouchableOpacity>
+      />
     </Appbar.Header>
   );
 };

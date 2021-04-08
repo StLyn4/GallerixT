@@ -1,14 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  TouchableOpacity,
-  Modal as RNModal,
-} from 'react-native';
+import { StyleSheet, ScrollView, View, Modal as RNModal } from 'react-native';
 import { Text, Avatar, Divider } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
+
+import IconButton from '@/IconButton';
 
 const TimeFormater = new Intl.DateTimeFormat('ru-RU', {
   weekday: 'long',
@@ -30,17 +26,14 @@ const Modal = ({ visible, onClose, info, theme }) => {
             },
           ]}
         >
-          <TouchableOpacity
+          <IconButton
+            name="close-circle-outline"
+            size={28}
+            color={theme.colors.primary}
             onPress={onClose}
             style={styles.close}
             hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
-          >
-            <Ionicons
-              name="close-circle-outline"
-              size={28}
-              color={theme.colors.primary}
-            />
-          </TouchableOpacity>
+          />
 
           <Text style={styles.title}>Основная информация</Text>
           <Divider />
