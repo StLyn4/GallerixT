@@ -2,7 +2,7 @@
   "name": "GallerixT",
   "main": "index.js",
   "version": "1.0.0",
-  "description": "Приложение-галерея для демотсрации работы с Unsplash API",
+  "description": "Приложение-галерея для демонстрации работы с Unsplash API",
   "repository": "https://github.com/StLyn4/GallerixT.git",
   "author": "Vsevolod Volkov <st.lyn4@gmail.com>",
   "license": "MIT",
