@@ -24,7 +24,7 @@ const RootNavigator = (props) => {
             return (
               <Header
                 title={title}
-                routeName={nav.scene.route.name}
+                route={nav.scene.route}
                 navigation={navigation}
                 havePrevious={Boolean(nav.previous)}
               />
