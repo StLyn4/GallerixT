@@ -1,43 +1,22 @@
 import React from 'react';
-import { View, Image, Animated, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Image from 'react-native-image-progress';
 
 import Loading from '@/Loading';
 
-class PhotoThumb extends React.Component {
-  state = {
-    loadingOpacity: new Animated.Value(1),
-  };
-
-  loadHandler = () => {
-    Animated.timing(this.state.loadingOpacity, {
-      toValue: 0,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  render() {
-    const { url, containerStyle, imageStyle } = this.props;
-    const loadingOffset = containerStyle?.height ?? styles.container.height;
-    return (
-      <View style={[styles.container, containerStyle]}>
-        <Image
-          style={[styles.image, imageStyle]}
-          source={{ uri: url }}
-          resizeMode="cover"
-          onLoad={this.loadHandler}
-        />
-        <Animated.View
-          style={{
-            opacity: this.state.loadingOpacity,
-          }}
-        >
-          <Loading style={loadingOffset && { marginTop: -loadingOffset }} />
-        </Animated.View>
-      </View>
-    );
-  }
-}
+const PhotoThumb = ({ url, containerStyle }) => {
+  return (
+    <View style={[styles.container, containerStyle]}>
+      <Image
+        imageStyle={styles.image}
+        indicator={() => <Loading />}
+        source={{ uri: url }}
+        resizeMode="cover"
+        onLoad={this.loadHandler}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

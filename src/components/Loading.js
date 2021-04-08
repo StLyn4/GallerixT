@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
-const Loading = ({ theme, style: userStyle }) => {
+const Loading = ({ theme }) => {
   return (
     <View
       style={[
@@ -11,7 +11,6 @@ const Loading = ({ theme, style: userStyle }) => {
           backgroundColor: theme.colors.surface,
           shadowColor: theme.colors.onBackground,
         },
-        userStyle,
       ]}
     >
       <ActivityIndicator size="large" color={theme.dark ? 'white' : 'grey'} />

@@ -1,12 +1,9 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  Image,
-  useWindowDimensions,
-} from 'react-native';
+import { StyleSheet, ScrollView, useWindowDimensions } from 'react-native';
+import Image from 'react-native-image-progress';
 
 import Modal from '@/Modal';
+import Loading from '@/Loading';
 
 const Photo = ({ navigation, route }) => {
   const { width: winWidth, height: winHeight } = useWindowDimensions();
@@ -27,8 +24,9 @@ const Photo = ({ navigation, route }) => {
       <ScrollView contentContainerStyle={styles.container}>
         <Image
           style={{ width: imgWidth, height: imgHeight }}
-          resizeMode="contain"
+          indicator={() => <Loading />}
           source={{ uri: info.urls.full }}
+          resizeMode="contain"
         />
       </ScrollView>
       <Modal
