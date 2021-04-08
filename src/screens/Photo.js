@@ -13,6 +13,7 @@ const Photo = ({ navigation, route }) => {
   const { info, showInfo } = route.params;
   let imgWidth, imgHeight;
 
+  // если ширина меньше, то подстраиваемся под высоту и наоборот
   if (info.width < info.height) {
     imgHeight = winHeight - 10;
     imgWidth = (info.height / imgHeight) * info.width;

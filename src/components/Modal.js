@@ -71,6 +71,7 @@ const Modal = ({ visible, onClose, info, theme }) => {
               <View style={styles.vertical}>
                 <Ionicons
                   name="images-outline"
+                  style={styles.icon}
                   size={18}
                   color={theme.colors.primary}
                 />
@@ -79,6 +80,7 @@ const Modal = ({ visible, onClose, info, theme }) => {
               <View style={styles.vertical}>
                 <Ionicons
                   name="heart-outline"
+                  style={styles.icon}
                   size={18}
                   color={theme.colors.primary}
                 />
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
   modal: {
     padding: 10,
     width: '80%',
-    minHeight: 400,
+    minHeight: 450,
     borderRadius: 10,
     shadowOffset: {
       width: 0,
@@ -133,6 +135,9 @@ const styles = StyleSheet.create({
   },
   stats: {
     marginTop: 5,
+  },
+  icon: {
+    marginRight: 5,
   },
   title: {
     color: 'grey',
